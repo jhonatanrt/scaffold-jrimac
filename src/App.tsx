@@ -5,6 +5,7 @@ import './App.css';
 import Amplify, { Auth, Hub } from 'aws-amplify';
 // import awsconfig from './aws-exports';
 import { withOAuth } from 'aws-amplify-react'; 
+import Cotizador from './scenes/Cotizador';
 
 const OAuthButton = (props: any) => {
     return (
@@ -75,6 +76,7 @@ const App: React.FC = (props: any) => {
           Learn React
         </a>
       </header> */}
+      <Cotizador/>
       <AuthButton/>
       <button onClick={() => Auth.signOut()}>Sign out</button>
     </div>
