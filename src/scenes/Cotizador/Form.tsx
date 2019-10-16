@@ -1,19 +1,5 @@
 import React from 'react';
-import { withFormik } from 'formik';
-import * as Yup from 'yup';
-// import VirtualizedSelect from 'react-virtualized-select';
-
-// import 'react-select/dist/react-select.css';
-// import 'react-virtualized/styles.css';
-// import 'react-virtualized-select/styles.css';
-
-const imaginaryThings = [
-  { label: 'Thing 1', value: 1 },
-  { label: 'Thing 2', value: 2 },
-  { label: 'Thing 3', value: 3 },
-  { label: 'Thing 4', value: 4 },
-  { label: 'Thing 5', value: 5 },
-];
+import { Button } from '../../components/Button'
 
 const UserForm = (props: any) => {
   const {
@@ -29,12 +15,8 @@ const UserForm = (props: any) => {
     handleReset,
   } = props;
 
-  // const _handleSelect = (selectChoice: any) => {
-  //   setFieldValue('imaginaryThingId', selectChoice.value);
-  // };
-
   return(
-    <form className="p-5" onSubmit={handleSubmit}>
+    <form className="" onSubmit={handleSubmit}>
       <h1>Hello this is form!</h1>
       <div className="form-group">
         <label>Imaginary Email</label>
@@ -54,47 +36,11 @@ const UserForm = (props: any) => {
           onBlur={handleBlur} />
         {errors.username && touched.username && <div className="invalid-feedback">{errors.username}</div>}
       </div>
-      {/* <div className="form-group">
-        <label>Imaginary Thing</label>
-        <VirtualizedSelect
-          name="imaginaryThingId"
-          value={values.imaginaryThingId}
-          options={imaginaryThings}
-          onChange={_handleSelect} />
-        <small className="form-text text-muted">
-          This is optional
-        </small>
-      </div> */}
-
-      <button type="submit" className="btn btn-outline-primary" disabled={isSubmitting}>
+      <Button type="submit" className="btn btn-outline-primary" disabled={isSubmitting}>
         {isSubmitting ? 'WAIT PLIZ' : 'CLICK ME'}
-      </button>
+      </Button>
     </form>
   );
 }
 
-export default withFormik({
-  mapPropsToValues: (props: any) => ({ 
-    email: props.user.email,
-    username: props.user.username,
-    imaginaryThingId: props.user.imaginaryThingId,
-  }),
-  
-  validationSchema: Yup.object().shape({
-    email: Yup.string().email('Invalid email address').required('Email is required!'),
-    username: Yup.string().required('This man needs a ${path}').when('email', (email: any, schema: any) => {
-      if (email === 'foobar@example.com') { 
-        return schema.label('papidipupi').min(10);
-      }
-      return schema.label('babidibiba');
-    }).test('is-zigzagging', '${path} is not zigzagging', (value: any) => value === 'zigzagging'),
-  }),
-
-  handleSubmit: (values: any) => {
-    setTimeout(() => {
-      // submit them do the server. do whatever you like!
-      alert(JSON.stringify(values, null, 2));
-      // setSubmitting(false);
-    }, 1000);
-  },
-})(UserForm);
+export default UserForm;
