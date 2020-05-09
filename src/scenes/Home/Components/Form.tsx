@@ -1,18 +1,19 @@
 import React from 'react';
-import { Button } from '../../components/Button'
+import { Button } from '../../../components/Button';
 
 const UserForm = (props: any) => {
   const {
     values,
     touched,
     errors,
-    dirty,
+
     isSubmitting,
     handleChange,
     setFieldValue,
     handleBlur,
     handleSubmit,
     handleReset,
+    isValid
   } = props;
 
   return(

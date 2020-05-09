@@ -1,28 +1,28 @@
-import React, { useCallback, useEffect } from 'react';
 import { withFormik } from 'formik';
+import React, { useCallback, useEffect } from 'react';
 import * as Yup from 'yup';
-import UserForm from './Form';
+
+import UserForm from './Components/Form';
+import { Store } from '../../store';
 
 const Cotizador = (props: any) => {
-  const imaginaryUser = {
-    email: '',
-    username: '',
-    imaginaryThingId: null,
-  };
+
+  const { state, dispatch } = React.useContext(Store)
+  const { goal } = state
 
   return (
     <div>
-      {/* <Form user={imaginaryUser}/> */}
-      <FormikUser user={imaginaryUser}/>
+      {JSON.stringify(goal)}
+      <FormikUser/>
     </div>
   )
 }
 
 const FormikUser =  withFormik({
   mapPropsToValues: (props: any) => ({ 
-    email: props.user.email,
-    username: props.user.username,
-    imaginaryThingId: props.user.imaginaryThingId,
+    email: '',
+    username: '',
+    imaginaryThingId: ''
   }),
   
   validationSchema: Yup.object().shape({
